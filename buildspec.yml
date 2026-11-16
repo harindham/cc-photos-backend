@@ -1,0 +1,14 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions: { python: 3.12 }
+  build:
+    commands:
+      - cd LF1 && pip install -r requirements.txt -t . && zip -r ../lf1.zip . && cd ..
+      - cd LF2 && pip install -r requirements.txt -t . && zip -r ../lf2.zip . && cd ..
+      - aws lambda update-function-code --function-name index-photos --zip-file fileb://lf1.zip
+      - aws lambda update-function-code --function-name search-photos --zip-file fileb://lf2.zip
+artifacts:
+  files:
+    - lf1.zip
+    - lf2.zip
