@@ -3,7 +3,7 @@ from datetime import datetime
 import boto3
 from opensearchpy import OpenSearch, RequestsHttpConnection
 
-s3 = boto3.client('s3')
+s3 = boto3.client('s3') #comment added
 rekognition = boto3.client('rekognition')
 
 es = OpenSearch(
