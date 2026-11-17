@@ -60,7 +60,7 @@ def lambda_handler(event, context):
     for hit in res['hits']['hits']:
         d = hit['_source']
         results.append({
-            'url': f"https://{d['bucket']}.s3.amazonaws.com/{d['objectKey']}",
+            'url': f"https://{d['bucket']}.s3.amazonaws.com/{d['objectKey']}", #comment
             'labels': d['labels']
         })
     return {'statusCode': 200, 'headers': CORS, 'body': json.dumps({'results': results})}
