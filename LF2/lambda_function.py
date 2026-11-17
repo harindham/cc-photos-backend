@@ -52,7 +52,7 @@ def lambda_handler(event, context):
         return {'statusCode': 200, 'headers': CORS, 'body': json.dumps({'results': []})}
 
     # match any keyword (also its singular form: "dogs" -> "dog")
-    terms = list({t for k in keywords for t in (k, singular(k))})
+    terms = list({t for k in keywords for t in (k, singular(k))}) # comment added
     query = {'query': {'terms': {'labels': terms}}, 'size': 50}
     res = es.search(index='photos', body=query)
 
